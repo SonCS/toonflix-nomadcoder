@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toonflix/widgets/button.dart';
 
 void main() {
   runApp(const App());
@@ -13,7 +14,7 @@ class App extends StatelessWidget {
       home: Scaffold(
         backgroundColor: const Color(0xff181818),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 18),
+          padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -56,7 +57,7 @@ class App extends StatelessWidget {
                 ),
               ),
               const Text(
-                "\$ 100000000000000",
+                "\$ 100",
                 style: TextStyle(
                   fontSize: 42,
                   color: Colors.white,
@@ -67,19 +68,16 @@ class App extends StatelessWidget {
                 height: 30,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                      // div와 같은 위젯
-                      decoration: BoxDecoration(color: Colors.amber,
-                      borderRadius: BorderRadius.circular(45)),
-                      child: const Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 20,
-                          horizontal: 50,
-                        ),
-                        child: Text('Transfer', style: TextStyle(fontSize: 20),),
-                      )
-                    )
+                  Button(
+                      title: "Transfer",
+                      bgColor: Colors.amber,
+                      textColor: Colors.black),
+                  Button(
+                      title: "Request",
+                      bgColor: const Color(0xff1f2123),
+                      textColor: Colors.white),
                 ],
               )
             ],
