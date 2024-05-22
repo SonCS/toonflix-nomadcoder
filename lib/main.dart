@@ -11,9 +11,9 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Color(0xff181818),
+        backgroundColor: const Color(0xff181818),
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 18),
+          padding: const EdgeInsets.symmetric(horizontal: 18),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -72,13 +72,14 @@ class App extends StatelessWidget {
                       // div와 같은 위젯
                       decoration: BoxDecoration(color: Colors.amber,
                       borderRadius: BorderRadius.circular(45)),
-                      child: Padding(
+                      child: const Padding(
                         padding: EdgeInsets.symmetric(
                           vertical: 20,
                           horizontal: 50,
                         ),
                         child: Text('Transfer', style: TextStyle(fontSize: 20),),
-                      ))
+                      )
+                    )
                 ],
               )
             ],
