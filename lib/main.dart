@@ -15,6 +15,8 @@ class _AppState extends State<App> {
   int counter = 0;
 
   void onClicked() {
+    // setState는 데이터가 변경됨을 알려주는 메서드
+    // 굳이 {} 안에 코드를 추가할 필요는 없다.
     setState(() {
       counter = counter + 1;
     });
