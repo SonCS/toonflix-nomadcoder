@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -8,6 +10,22 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int totalSeconds = 1500;
+  late Timer timer;
+
+  void onTick(Timer timer) {
+    setState(() {
+      totalSeconds = totalSeconds - 1;
+    });
+  }
+
+  void onStartPress() {
+    timer = Timer.periodic(
+      const Duration(seconds: 1),
+      onTick,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Container(
               alignment: Alignment.bottomCenter,
               child: Text(
-                '25:00',
+                '$totalSeconds',
                 style: TextStyle(
                     color: Theme.of(context).cardColor,
                     fontSize: 89,
@@ -33,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Center(
               child: IconButton(
                   icon: const Icon(Icons.play_circle_outline),
-                  onPressed: () {},
+                  onPressed: onStartPress,
                   iconSize: 120,
                   color: Theme.of(context).cardColor),
             ),
@@ -44,24 +62,32 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Expanded(
                   child: Container(
-                    decoration:
-                        BoxDecoration(color: Theme.of(context).cardColor),
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).cardColor,
+                        borderRadius: BorderRadius.circular(50)),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
                           'Pomodors',
                           style: TextStyle(
-                            fontSize: 20,
-                            color: Theme.of(context).textTheme.displayLarge!.color, 
-                            fontWeight: FontWeight.w600
-                          ),
+                              fontSize: 20,
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .displayLarge!
+                                  .color,
+                              fontWeight: FontWeight.w600),
                         ),
-                        Text('0', style: TextStyle(
-                            fontSize: 58,
-                            color: Theme.of(context).textTheme.displayLarge!.color, 
-                            fontWeight: FontWeight.w600
-                          ),)
+                        Text(
+                          '0',
+                          style: TextStyle(
+                              fontSize: 58,
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .displayLarge!
+                                  .color,
+                              fontWeight: FontWeight.w600),
+                        )
                       ],
                     ),
                   ),
