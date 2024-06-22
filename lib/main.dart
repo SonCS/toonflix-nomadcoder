@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toonflix/srceens/home_screen.dart';
 
 void main() {
   runApp(const App());
@@ -19,29 +20,25 @@ class _AppState extends State<App> {
       showTitle = !showTitle;
     });
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
         textTheme: const TextTheme(
+          displayLarge: TextStyle(
+            color: Color(0xFF232B55),
+          ),
           titleLarge: TextStyle(
             color: Colors.red,
           ),
         ),
-      ),
-      home: Scaffold(
-        backgroundColor: const Color(0xfff4eddb),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              showTitle ? const MyLargeTitle() : const Text('nothing'),
-              IconButton(onPressed: toggleTitle, icon: const Icon(Icons.remove_red_eye))
-            ],
-          ),
+        colorScheme: ColorScheme.fromSwatch(
+          backgroundColor: const Color(0xFFE7626C),
         ),
+        cardColor: const Color(0xFFF4EDDB)
       ),
+      home: const HomeScreen(),
     );
   }
 }
@@ -72,15 +69,14 @@ class _MyLargeTitleState extends State<MyLargeTitle> {
     super.dispose();
     print('dispose');
   }
+
   @override
   Widget build(BuildContext context) {
     print('build');
     return Text(
       'My Large Title',
       style: TextStyle(
-        fontSize: 30,
-        color: Theme.of(context).textTheme.titleLarge?.color
-      ),
+          fontSize: 30, color: Theme.of(context).textTheme.titleLarge?.color),
     );
   }
 }
