@@ -6,7 +6,6 @@ import 'package:toonflix/services/api_service.dart';
 class DetailScreen extends StatefulWidget {
   final String title, thumb, id;
 
-
   const DetailScreen({
     super.key,
     required this.title,
@@ -21,7 +20,7 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> {
   late Future<WebtoonDetailModel> webtoonDetail;
   late Future<List<WebtoonEpisodeModel>> episodes;
-  
+
   @override
   void initState() {
     super.initState();
@@ -46,7 +45,7 @@ class _DetailScreenState extends State<DetailScreen> {
       body: Column(
         children: [
           const SizedBox(
-            height: 50,
+            height: 45,
           ),
           Center(
             child: Hero(
@@ -73,14 +72,39 @@ class _DetailScreenState extends State<DetailScreen> {
             ),
           ),
           const SizedBox(
-            height: 50,
+            height: 20,
           ),
-          const Text(
-            'detail 내용',
-            style: TextStyle(
-              fontSize: 18,
-            ),
-          )
+          FutureBuilder(
+            future: webtoonDetail,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 40),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        snapshot.data!.about,
+                        style: const TextStyle(
+                          fontSize: 16,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Text(
+                        "${snapshot.data!.genre} / ${snapshot.data!.age}",
+                        style: const TextStyle(
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }
+              return const Text("...");
+            },
+          ),
         ],
       ),
     );
